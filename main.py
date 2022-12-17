@@ -50,4 +50,8 @@ async def on_message(message):
             # Disconnect from the voice channel and send the transcribed text
             await message.channel.send('Transcribed text: ' + text)
 
+<<<<<<< HEAD
 client.run('BOT TOKEN')
+=======
+client.run('meu token')
+>>>>>>> refs/remotes/origin/main
