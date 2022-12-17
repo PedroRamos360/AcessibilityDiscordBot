@@ -26,7 +26,14 @@ async def on_message(message):
         voice_client = await voice_channel.connect()
 
         # Start transcribing the audio
-        while voice_client.is_connected():
+        while True:
+            try:
+                voice_channel = message.author.voice.channel
+            except AttributeError:
+                voice_channel = None
+            if voice_channel is None:
+                await voice_client.disconnect()
+                return
             r = sr.Recognizer()
             with sr.Microphone() as source:
                 audio = r.listen(source)
@@ -35,12 +42,12 @@ async def on_message(message):
             try:
                 text = r.recognize_google(audio)
             except sr.UnknownValueError:
-                text = "Sorry, I couldn't understand"
                 await message.channel.send('Sorry, I couldn\'t understand what was said.')
+                continue
             except sr.RequestError as e:
                 await message.channel.send('Error: {0}'.format(e))
 
             # Disconnect from the voice channel and send the transcribed text
             await message.channel.send('Transcribed text: ' + text)
 
-client.run('MTA1MjI2NDg5ODA1MjIzNTI5NQ.GYCko9.Cu2O7EmQDM7pYMayh6SEHoldRPItd413isQFu4')
+client.run('BOT TOKEN')
