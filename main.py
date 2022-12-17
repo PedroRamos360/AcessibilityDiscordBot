@@ -43,4 +43,4 @@ async def on_message(message):
             # Disconnect from the voice channel and send the transcribed text
             await message.channel.send('Transcribed text: ' + text)
 
-client.run('MTA1MjI2NDg5ODA1MjIzNTI5NQ.GYCko9.Cu2O7EmQDM7pYMayh6SEHoldRPItd413isQFu4')
+client.run('meu token')
